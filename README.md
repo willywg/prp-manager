@@ -31,11 +31,11 @@ Copy the skill folder to your Claude skills directory:
 
 ```bash
 # Option 1: User-level (available in all projects)
-git clone https://github.com/YOUR_USERNAME/prp-manager.git
+git clone https://github.com/willywg/prp-manager.git
 cp -r prp-manager ~/.claude/skills/
 
 # Option 2: Project-level (available only in current project)
-git clone https://github.com/YOUR_USERNAME/prp-manager.git
+git clone https://github.com/willywg/prp-manager.git
 cp -r prp-manager .claude/skills/
 ```
 
