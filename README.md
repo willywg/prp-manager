@@ -60,7 +60,7 @@ Or download and copy manually:
 
 ## Usage
 
-The skill activates automatically when you mention PRPs or feature planning. You can also invoke it directly with `/prp-manager`.
+The skill activates automatically when you mention PRPs or feature planning.
 
 ### Workflow 1: Initialize PRPs (Recommended First)
 
@@ -133,15 +133,25 @@ Validation: All passing
 Status: SUCCESS
 ```
 
-## Supported Stacks
+## Stack Detection
 
-The skill auto-detects and configures validation commands for:
+During initialization, Claude analyzes your project files to detect your stack and create an appropriate PRP template with the correct validation commands. The table below shows common configurations, but **Claude will adapt to whatever stack your project uses**.
 
 | Stack | Package Manager | Linting | Testing |
 |-------|----------------|---------|---------|
 | Python | uv, pip | ruff, flake8, mypy | pytest |
 | Node.js | npm, pnpm, yarn | eslint, biome | jest, vitest |
 | TypeScript | npm, pnpm | tsc, biome | jest, vitest |
+
+### Recommended: Provide Project Context
+
+For best results, ensure your project has one or more of these files before initializing PRPs:
+
+- **`CLAUDE.md`** or **`AGENTS.md`** - AI agent instructions and project rules
+- **`README.md`** - Project overview and architecture
+- **`CONTRIBUTING.md`** - Code style and contribution guidelines
+
+These files give Claude more context about your project's conventions, patterns, and specific requirements, resulting in better customized PRP templates.
 
 ## File Structure
 
