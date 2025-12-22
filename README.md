@@ -27,36 +27,42 @@ A PRP provides the AI with:
 
 ### Claude Code (CLI)
 
-Copy the skill folder to your Claude skills directory:
-
 ```bash
-# Option 1: User-level (available in all projects)
+# Clone the repository
 git clone https://github.com/willywg/prp-manager.git
+cd prp-manager
+
+# Option 1: User-level (available in all projects)
 cp -r prp-manager ~/.claude/skills/
 
 # Option 2: Project-level (available only in current project)
-git clone https://github.com/willywg/prp-manager.git
-cp -r prp-manager .claude/skills/
+mkdir -p /path/to/your/project/.claude/skills
+cp -r prp-manager /path/to/your/project/.claude/skills/
 ```
 
-Or download and copy manually:
-1. Download or clone this repository
-2. Copy the `prp-manager` folder to `~/.claude/skills/` (user-level) or `.claude/skills/` (project-level)
+After installation, verify the skill is available:
+```bash
+# The skill folder should be at one of these locations:
+~/.claude/skills/prp-manager/SKILL.md           # User-level
+.claude/skills/prp-manager/SKILL.md             # Project-level
+```
 
 ### Claude.ai (Web)
 
 1. Download this repository as a ZIP
-2. Go to **Settings > Features**
-3. Upload the ZIP file
+2. Extract and compress only the `prp-manager/` folder into a new ZIP
+3. Go to **Settings > Features**
+4. Upload the ZIP file
 
 > Note: Custom Skills on Claude.ai require Pro, Max, Team, or Enterprise plans with code execution enabled.
 
 ### Claude Desktop
 
 1. Download this repository as a ZIP
-2. Open Claude Desktop settings
-3. Navigate to the Skills section
-4. Upload the ZIP file
+2. Extract and compress only the `prp-manager/` folder into a new ZIP
+3. Open Claude Desktop settings
+4. Navigate to the Skills section
+5. Upload the ZIP file
 
 ## Usage
 
@@ -153,16 +159,18 @@ For best results, ensure your project has one or more of these files before init
 
 These files give Claude more context about your project's conventions, patterns, and specific requirements, resulting in better customized PRP templates.
 
-## File Structure
+## Repository Structure
 
 ```
-prp-manager/
-├── SKILL.md              # Main skill instructions
-├── README.md             # This file
-├── LICENSE               # MIT License
-├── templates/
-│   └── prp_base.md       # Default PRP template
-└── examples.md           # Usage examples
+prp-manager/                  # Repository root
+├── README.md                 # This file
+├── LICENSE                   # MIT License
+├── CLAUDE.md                 # Claude Code guidance for this repo
+└── prp-manager/              # The skill (copy this folder)
+    ├── SKILL.md              # Main skill instructions
+    ├── examples.md           # Usage examples
+    └── templates/
+        └── prp_base.md       # Default PRP template
 ```
 
 ## Credits & Inspiration

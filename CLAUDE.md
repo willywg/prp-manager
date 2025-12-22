@@ -8,12 +8,21 @@ PRP Manager is a Claude Code skill for creating and executing PRPs (Product Requ
 
 **This is a Claude Code skill, not a traditional codebase with source code.** It consists of markdown files that define skill behavior.
 
-## Project Structure
+## Repository Structure
 
-- `SKILL.md` - Main skill definition with frontmatter metadata and workflow instructions
-- `templates/prp_base.md` - Default PRP template used as fallback or base for customization
-- `examples.md` - Usage examples showing the three workflows
-- `README.md` - Installation and usage documentation
+```
+prp-manager/                  # Repository root (development files)
+├── README.md                 # Installation and usage documentation
+├── LICENSE                   # MIT License
+├── CLAUDE.md                 # This file
+└── prp-manager/              # THE SKILL (this is what users install)
+    ├── SKILL.md              # Main skill definition with frontmatter and workflows
+    ├── examples.md           # Usage examples showing the three workflows
+    └── templates/
+        └── prp_base.md       # Default PRP template
+```
+
+**Important**: Only the `prp-manager/` subdirectory is the actual skill. The root-level files (README, LICENSE, CLAUDE.md) are for repository documentation and should not be copied when installing the skill.
 
 ## Key Concepts
 
@@ -33,3 +42,4 @@ PRP Manager is a Claude Code skill for creating and executing PRPs (Product Requ
 - Workflow sections in `SKILL.md` must remain structured with clear steps
 - Template customization guidance in `SKILL.md` should cover common stacks (Python, Node.js, TypeScript)
 - Examples in `examples.md` should demonstrate realistic usage scenarios
+- Keep skill files (`prp-manager/`) separate from repo documentation (root files)
