@@ -25,7 +25,8 @@ Create comprehensive PRPs (Product Requirements Prompts) that enable AI agents t
 5. **One-Pass Success**: Goal is working code through comprehensive context
 
 ## References
-- **Default Template**: See `templates/prp_base.md`
+- **Default Template**: See [assets/templates/prp_base.md](assets/templates/prp_base.md)
+- **Usage Examples**: See [references/examples.md](references/examples.md)
 - **Project Template**: `PRPs/templates/prp_base.md` (generated per project)
 
 ---
