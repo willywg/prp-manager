@@ -1,6 +1,8 @@
-# PRP Manager - Claude Code Skill
+# PRP Manager - Agent Skill
 
-A Claude Code skill for creating and executing PRPs (Product Requirements Prompts) using Context Engineering principles for one-pass implementation success.
+An [Agent Skill](https://agentskills.io) for creating and executing PRPs (Product Requirements Prompts) using Context Engineering principles for one-pass implementation success.
+
+Works with Claude Code, Cursor, Windsurf, Gemini CLI, VS Code, and [other compatible agents](https://agentskills.io/home).
 
 ## What is Context Engineering?
 
@@ -168,9 +170,12 @@ prp-manager/                  # Repository root
 ├── CLAUDE.md                 # Claude Code guidance for this repo
 └── prp-manager/              # The skill (copy this folder)
     ├── SKILL.md              # Main skill instructions
-    ├── examples.md           # Usage examples
-    └── templates/
-        └── prp_base.md       # Default PRP template
+    ├── assets/
+    │   └── templates/
+    │       └── prp_base.md   # Default PRP template
+    └── references/
+        ├── examples.md       # Usage examples
+        └── customization.md  # Stack-specific customization guide
 ```
 
 ## Credits & Inspiration
@@ -182,10 +187,9 @@ This skill is based on the Context Engineering methodology:
 
 ## Learn More
 
+- [Agent Skills Specification](https://agentskills.io/specification)
 - [What is Context Engineering?](https://github.com/coleam00/context-engineering-intro)
 - [Original PRP Framework](https://github.com/Wirasm/PRPs-agentic-eng)
-- [Claude Code Skills Documentation](https://docs.anthropic.com/en/docs/claude-code/skills)
-- [Agent Skills Best Practices](https://docs.anthropic.com/en/docs/agents-and-tools/agent-skills/best-practices)
 
 ## License
 

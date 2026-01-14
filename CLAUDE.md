@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-PRP Manager is a Claude Code skill for creating and executing PRPs (Product Requirements Prompts) using Context Engineering principles. It enables AI agents to implement features with comprehensive context for one-pass implementation success.
+PRP Manager is an [Agent Skill](https://agentskills.io) for creating and executing PRPs (Product Requirements Prompts) using Context Engineering principles. It enables AI agents to implement features with comprehensive context for one-pass implementation success.
 
-**This is a Claude Code skill, not a traditional codebase with source code.** It consists of markdown files that define skill behavior.
+**This is an Agent Skill, not a traditional codebase with source code.** It consists of markdown files that define skill behavior.
 
 ## Repository Structure
 
@@ -17,9 +17,12 @@ prp-manager/                  # Repository root (development files)
 ├── CLAUDE.md                 # This file
 └── prp-manager/              # THE SKILL (this is what users install)
     ├── SKILL.md              # Main skill definition with frontmatter and workflows
-    ├── examples.md           # Usage examples showing the three workflows
-    └── templates/
-        └── prp_base.md       # Default PRP template
+    ├── assets/
+    │   └── templates/
+    │       └── prp_base.md   # Default PRP template
+    └── references/
+        ├── examples.md       # Usage examples showing the three workflows
+        └── customization.md  # Stack-specific validation commands
 ```
 
 **Important**: Only the `prp-manager/` subdirectory is the actual skill. The root-level files (README, LICENSE, CLAUDE.md) are for repository documentation and should not be copied when installing the skill.
@@ -38,8 +41,9 @@ prp-manager/                  # Repository root (development files)
 
 ## When Editing This Skill
 
-- The `SKILL.md` frontmatter (name, description) is used by Claude Code for skill discovery
+- The `SKILL.md` frontmatter (name, description, compatibility) is used for skill discovery
 - Workflow sections in `SKILL.md` must remain structured with clear steps
-- Template customization guidance in `SKILL.md` should cover common stacks (Python, Node.js, TypeScript)
-- Examples in `examples.md` should demonstrate realistic usage scenarios
+- Stack-specific customization is in `references/customization.md`
+- Examples in `references/examples.md` should demonstrate realistic usage scenarios
 - Keep skill files (`prp-manager/`) separate from repo documentation (root files)
+- Follow the [Agent Skills specification](https://agentskills.io/specification)
