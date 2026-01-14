@@ -164,16 +164,16 @@ ls -1 PRPs/*.md 2>/dev/null | grep -E '^PRPs/[0-9]{3}--' | sort -r | head -5
 - Understand all context
 - Extend research if gaps found
 
-### Step 2: Plan (ULTRATHINK)
+### Step 2: Plan
 - Think before executing
 - Break into manageable steps
-- Use TodoWrite to track progress
+- Use task tracking if available
 - Identify patterns from existing code
 
 ### Step 3: Execute
 - Follow implementation blueprint
 - Implement in task order
-- Mark todos as completed
+- Mark tasks as completed
 
 ### Step 4: Validate
 - Run each validation command
