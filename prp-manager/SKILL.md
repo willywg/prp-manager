@@ -1,6 +1,6 @@
 ---
 name: prp-manager
-description: Create and execute PRPs (Product Requirements Prompts) for feature implementation using Context Engineering principles. Use when planning new features, initializing PRP setup, or executing existing PRPs. Helps achieve one-pass implementation success.
+description: Create and execute PRPs (Product Requirements Prompts) for feature implementation using Context Engineering principles. Use when planning new features, initializing PRP setup, executing existing PRPs, or when the user mentions "PRP", "feature planning", "implementation blueprint", or "context engineering". Helps achieve one-pass implementation success.
 license: MIT
 compatibility: Works with any agent supporting the Agent Skills specification. Requires file system access.
 metadata:
