@@ -35,6 +35,7 @@ git clone https://github.com/willywg/prp-manager.git
 cd prp-manager
 
 # Option 1: User-level (available in all projects)
+mkdir -p ~/.claude/skills
 cp -r prp-manager ~/.claude/skills/
 
 # Option 2: Project-level (available only in current project)
@@ -44,10 +45,10 @@ cp -r prp-manager /path/to/your/project/.claude/skills/
 
 After installation, verify the skill is available:
 ```bash
-# The skill folder should be at one of these locations:
-~/.claude/skills/prp-manager/SKILL.md           # User-level
-.claude/skills/prp-manager/SKILL.md             # Project-level
+# In your Claude terminal:
+/reload-skills
 ```
+The `prp-manager` skill should be listed.
 
 ### Claude.ai (Web)
 
