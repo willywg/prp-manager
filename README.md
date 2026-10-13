@@ -2,7 +2,13 @@
 
 An [Agent Skill](https://agentskills.io) for creating and executing PRPs (Product Requirements Prompts) using Context Engineering principles for one-pass implementation success.
 
-Works with Claude Code, Cursor, Windsurf, Gemini CLI, VS Code, and [other compatible agents](https://agentskills.io/home).
+Works with Claude Code, Cursor, Codex, Gemini CLI, GitHub Copilot, VS Code, OpenCode, and [other compatible agents](https://agentskills.io/clients).
+
+```bash
+npx skills add https://github.com/willywg/prp-manager --skill prp-manager
+```
+
+Listed on [skills.sh](https://www.skills.sh/willywg/prp-manager/prp-manager).
 
 ## What is Context Engineering?
 
@@ -27,7 +33,15 @@ A PRP provides the AI with:
 
 ## Installation
 
-### Claude Code (CLI)
+### Any compatible agent (Recommended)
+
+Install with the [skills CLI](https://www.skills.sh/willywg/prp-manager/prp-manager), which detects your installed agents and copies the skill to the right location:
+
+```bash
+npx skills add https://github.com/willywg/prp-manager --skill prp-manager
+```
+
+### Claude Code (Manual)
 
 ```bash
 # Clone the repository
@@ -189,6 +203,7 @@ This skill is based on the Context Engineering methodology:
 ## Learn More
 
 - [Agent Skills Specification](https://agentskills.io/specification)
+- [PRP Manager on skills.sh](https://www.skills.sh/willywg/prp-manager/prp-manager)
 - [What is Context Engineering?](https://github.com/coleam00/context-engineering-intro)
 - [Original PRP Framework](https://github.com/Wirasm/PRPs-agentic-eng)
 
