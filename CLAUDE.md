@@ -15,6 +15,9 @@ prp-manager/                  # Repository root (development files)
 ├── README.md                 # Installation and usage documentation
 ├── LICENSE                   # MIT License
 ├── CLAUDE.md                 # This file
+├── PRPs/                     # PRPs for developing this repo (not part of the skill)
+│   └── templates/
+│       └── prp_base.md       # This repo's own PRP template
 └── prp-manager/              # THE SKILL (this is what users install)
     ├── SKILL.md              # Main skill definition with frontmatter and workflows
     ├── assets/
@@ -25,7 +28,9 @@ prp-manager/                  # Repository root (development files)
         └── customization.md  # Stack-specific validation commands
 ```
 
-**Important**: Only the `prp-manager/` subdirectory is the actual skill. The root-level files (README, LICENSE, CLAUDE.md) are for repository documentation and should not be copied when installing the skill.
+**Important**: Only the `prp-manager/` subdirectory is the actual skill. The root-level files (README, LICENSE, CLAUDE.md) and `PRPs/` are for repository documentation and development, and should not be copied when installing the skill.
+
+`PRPs/templates/prp_base.md` is this repo's own template (the skill used on itself). The template shipped to users is `prp-manager/assets/templates/prp_base.md`.
 
 ## Key Concepts
 
