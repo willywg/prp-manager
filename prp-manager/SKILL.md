@@ -5,7 +5,7 @@ license: MIT
 compatibility: Works with any agent supporting the Agent Skills specification. Requires file system access.
 metadata:
   author: willywg
-  version: "1.0"
+  version: "1.1"
 ---
 # PRP Manager Skill
 
@@ -24,11 +24,13 @@ Create comprehensive PRPs (Product Requirements Prompts) that enable AI agents t
 4. **Progressive Success**: Start simple, validate, then enhance
 5. **One-Pass Success**: Goal is working code through comprehensive context
 
-## References
-- **Default Template**: See [assets/templates/prp_base.md](assets/templates/prp_base.md)
-- **Usage Examples**: See [references/examples.md](references/examples.md)
-- **Customization Guide**: See [references/customization.md](references/customization.md)
-- **Project Template**: `PRPs/templates/prp_base.md` (generated per project)
+## Bundled Files
+Read each file at the step that names it, not up front:
+- [assets/templates/prp_base.md](assets/templates/prp_base.md): stack-neutral PRP template. Read in Workflow 1 Step 3, or in Workflow 2 when the project has no template.
+- [references/customization.md](references/customization.md): validation commands per stack and how to resolve the template's command placeholders. Read whenever you write validation commands.
+- [references/examples.md](references/examples.md): worked example of the three workflows. Read only if you are unsure what a workflow's output should look like.
+
+The project's own template lives at `PRPs/templates/prp_base.md` (created by Workflow 1).
 
 ---
 
@@ -90,13 +92,14 @@ Testing:
 mkdir -p PRPs/templates
 ```
 
-**Generate `PRPs/templates/prp_base.md` with:**
-- Project-specific validation commands
-- Correct package manager syntax
-- Actual linting/testing tools used
-- Codebase tree format matching project structure
-- Any gotchas from AGENTS.md/CLAUDE.md/GEMINI.md
-- Test patterns from existing tests
+**Generate `PRPs/templates/prp_base.md`:**
+1. Read [assets/templates/prp_base.md](assets/templates/prp_base.md) and keep its section structure.
+2. Read [references/customization.md](references/customization.md) before writing any validation command.
+3. Replace every command placeholder (`[lint command]`, `[test command ...]`, `[start command]`, ...) with the project's real command. If the project has no tool for a line, delete the line instead of inventing one.
+4. Keep content placeholders such as `[Feature Name]`: they are filled per PRP.
+5. Adapt the rest to the project: codebase tree format, pseudocode and data model blocks in the project's language, gotchas from AGENTS.md/CLAUDE.md/GEMINI.md, test patterns from existing tests.
+
+The generated template must contain no unresolved command placeholders.
 
 ### Step 4: Confirm Setup
 
@@ -116,6 +119,8 @@ mkdir -p PRPs/templates
 ### Pre-check
 If `PRPs/templates/prp_base.md` doesn't exist:
 > "I notice this project doesn't have a PRP template yet. Would you like me to initialize PRPs first? This will create a customized template based on your project's stack and conventions."
+
+If the user declines, use [assets/templates/prp_base.md](assets/templates/prp_base.md) for this PRP and resolve its command placeholders for this project following [references/customization.md](references/customization.md). Never write a PRP with unresolved command placeholders: its validation loop cannot run.
 
 ### Step 1: Understand the Request
 - What is the feature/enhancement?
@@ -146,7 +151,7 @@ ls -1 PRPs/*.md 2>/dev/null | grep -E '^PRPs/[0-9]{3}--' | sort -r | head -5
 - 3-digit padding (001, 002, ...)
 - kebab-case for feature name
 
-**Use template from:** `PRPs/templates/prp_base.md`
+**Use template from:** `PRPs/templates/prp_base.md` (or the bundled default as described in Pre-check)
 
 ### Step 4: Quality Check
 

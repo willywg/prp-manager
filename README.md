@@ -165,6 +165,8 @@ During initialization, Claude analyzes your project files to detect your stack a
 | Python | uv, pip | ruff, flake8, mypy | pytest |
 | Node.js | npm, pnpm, yarn | eslint, biome | jest, vitest |
 | TypeScript | npm, pnpm | tsc, biome | jest, vitest |
+| Go | go modules | gofmt, go vet | go test |
+| Rust | cargo | cargo fmt, clippy | cargo test |
 
 ### Recommended: Provide Project Context
 

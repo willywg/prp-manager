@@ -29,10 +29,10 @@
 ### Documentation & References
 ```yaml
 # MUST READ - Include these in your context window
-- url: [Official API docs URL]
+- url: [Official docs URL]
   why: [Specific sections/methods needed]
 
-- file: [path/to/example.py]
+- file: [path/to/similar_feature]
   why: [Pattern to follow, gotchas to avoid]
 
 - doc: [Library documentation URL]
@@ -41,25 +41,23 @@
 ```
 
 ### Current Codebase Structure
-```bash
-# Run: tree -L 2 in project root
+```text
+[Output of the project tree, 2 levels deep, limited to relevant folders]
 ```
 
 ### Desired Structure (files to add/modify)
-```bash
-# Show new files with comments about responsibility
-src/
-├── new_feature/
-│   ├── __init__.py      # Module init
-│   ├── service.py       # Core business logic
-│   └── models.py        # Data models
+```text
+[path/to/new_module]/
+├── [new_file]        # [Responsibility]
+└── [new_file]        # [Responsibility]
+[path/to/existing_file]   # MODIFY: [what changes]
 ```
 
 ### Known Gotchas & Library Quirks
-```python
-# CRITICAL: [Library name] requires [specific setup]
-# Example: FastAPI requires async functions for endpoints
-# Example: This ORM doesn't support batch inserts over 1000 records
+```text
+CRITICAL: [Library name] requires [specific setup]
+GOTCHA: [Behavior that defies a reasonable assumption]
+LIMIT: [Rate limit, size limit or version constraint]
 ```
 
 ---
@@ -67,61 +65,56 @@ src/
 ## Implementation Blueprint
 
 ### Data Models
-```python
-# Core data models (ORM, Pydantic, etc.)
+```text
+[Types, schemas or tables this feature adds or changes, in the project's
+language. Remove this section if the feature has none.]
 ```
 
 ### Tasks (in execution order)
 ```yaml
 Task 1: [Description]
-  - MODIFY: src/existing_module.py
-  - FIND pattern: "class OldImplementation"
-  - INJECT after: "def __init__"
-  - PRESERVE: existing method signatures
+  - MODIFY: [path/to/existing_file]
+  - FIND pattern: "[existing symbol or text]"
+  - INJECT after: "[anchor]"
+  - PRESERVE: existing public signatures
 
 Task 2: [Description]
-  - CREATE: src/new_feature.py
-  - MIRROR pattern from: src/similar_feature.py
-  - MODIFY: class name and core logic
+  - CREATE: [path/to/new_file]
+  - MIRROR pattern from: [path/to/similar_file]
+  - MODIFY: names and core logic
   - KEEP: error handling pattern identical
-
-Task 3: [Description]
-  ...
 
 Task N: [Description]
   ...
 ```
 
 ### Pseudocode (with CRITICAL details)
-```python
+```text
 # Task 1: [Description]
-async def new_feature(param: str) -> Result:
-    # PATTERN: Always validate input first (see src/validators.py)
-    validated = validate_input(param)
+function new_feature(param):
+    # PATTERN: Validate input first (see [path/to/validators])
+    validated = validate(param)
 
-    # GOTCHA: This library requires connection pooling
-    async with get_connection() as conn:
-        # CRITICAL: API returns 429 if >10 req/sec
-        await rate_limiter.acquire()
-        result = await external_api.call(validated)
+    # GOTCHA: [Resource] must be acquired through [existing helper]
+    # CRITICAL: [External constraint, e.g. API returns 429 above 10 req/sec]
+    result = call_dependency(validated)
 
-    # PATTERN: Standardized response format
+    # PATTERN: Return the project's standard response shape
     return format_response(result)
 ```
 
 ### Integration Points
 ```yaml
-DATABASE:
-  - migration: "Add column 'feature_enabled' to users table"
-  - index: "CREATE INDEX idx_feature_lookup ON users(feature_id)"
+DATA:
+  - [Migration, schema or storage change, or "none"]
 
 CONFIG:
-  - add to: config/settings.py
-  - pattern: "FEATURE_TIMEOUT = int(os.getenv('FEATURE_TIMEOUT', '30'))"
+  - add to: [path/to/config]
+  - pattern: "[How settings are declared in this project]"
 
-ROUTES:
-  - add to: src/api/routes.py
-  - pattern: "router.include_router(feature_router, prefix='/feature')"
+ENTRY POINTS:
+  - add to: [path/to/routes, CLI, or module index]
+  - pattern: "[How features are registered in this project]"
 ```
 
 ---
@@ -131,55 +124,41 @@ ROUTES:
 ### Level 1: Syntax & Style
 ```bash
 # Run FIRST - fix errors before proceeding
-ruff check src/new_feature.py --fix
-mypy src/new_feature.py
+[lint command]
+[type check command]
 ```
 
 ### Level 2: Unit Tests
-```python
-# Test cases to create
-def test_happy_path():
-    """Basic functionality works"""
-    result = new_feature("valid_input")
-    assert result.status == "success"
-
-def test_validation_error():
-    """Invalid input raises ValidationError"""
-    with pytest.raises(ValidationError):
-        new_feature("")
-
-def test_external_api_timeout():
-    """Handles timeouts gracefully"""
-    with mock.patch('external_api.call', side_effect=TimeoutError):
-        result = new_feature("valid")
-        assert result.status == "error"
+```text
+Test cases to create in [path/to/tests], following [existing test file]:
+- Happy path: [input] -> [expected result]
+- Invalid input: [input] -> [expected error]
+- Dependency failure: [timeout or error] -> [expected handling]
 ```
 
 ```bash
 # Run and iterate until passing
-uv run pytest tests/test_new_feature.py -v
+[test command for the new tests]
 ```
 
 ### Level 3: Integration Test
 ```bash
-# Start service
-uv run python -m src.main --dev
+# Start or build the project
+[start command]
 
-# Test endpoint
-curl -X POST http://localhost:8000/feature \
-  -H "Content-Type: application/json" \
-  -d '{"param": "test_value"}'
+# Exercise the feature end to end
+[request, CLI call or script that exercises the feature]
 
-# Expected: {"status": "success", "data": {...}}
+# Expected: [observable result]
 ```
 
 ---
 
 ## Final Checklist
 
-- [ ] All tests pass: `uv run pytest tests/ -v`
-- [ ] No linting errors: `uv run ruff check src/`
-- [ ] No type errors: `uv run mypy src/`
+- [ ] All tests pass: `[full test command]`
+- [ ] No linting errors: `[lint command]`
+- [ ] No type errors: `[type check command]`
 - [ ] Manual test successful
 - [ ] Error cases handled gracefully
 - [ ] Logs are informative but not verbose
@@ -192,7 +171,6 @@ curl -X POST http://localhost:8000/feature \
 - ❌ Don't create new patterns when existing ones work
 - ❌ Don't skip validation because "it should work"
 - ❌ Don't ignore failing tests - fix them
-- ❌ Don't use sync functions in async context
 - ❌ Don't hardcode values that should be config
 - ❌ Don't catch all exceptions - be specific
 
