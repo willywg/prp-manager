@@ -1,0 +1,10 @@
+[
+  { "query": "initialize prps in this repo", "should_trigger": true },
+  { "query": "execute PRPs/003--csv-export.md", "should_trigger": true },
+  { "query": "write a spec for the notifications feature that I can hand to an agent tomorrow to build in one go", "should_trigger": true },
+  { "query": "we're adding multi-tenant support next sprint. research the codebase and put together a detailed plan with tasks in order and test commands, save it as a markdown file", "should_trigger": true },
+  { "query": "plan my week: I have 3 PRs to review and a release on Thursday", "should_trigger": false },
+  { "query": "draw up a product roadmap for Q1 with our top 5 initiatives", "should_trigger": false },
+  { "query": "refactor utils.js to use async/await", "should_trigger": false },
+  { "query": "genera la documentacion del README para este proyecto", "should_trigger": false }
+]

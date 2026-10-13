@@ -18,6 +18,7 @@ prp-manager/                  # Repository root (development files)
 ├── PRPs/                     # PRPs for developing this repo (not part of the skill)
 │   └── templates/
 │       └── prp_base.md       # This repo's own PRP template
+├── evals/                    # Trigger eval for the skill description (not part of the skill)
 └── prp-manager/              # THE SKILL (this is what users install)
     ├── SKILL.md              # Main skill definition with frontmatter and workflows
     ├── assets/
@@ -28,7 +29,7 @@ prp-manager/                  # Repository root (development files)
         └── customization.md  # Stack-specific validation commands
 ```
 
-**Important**: Only the `prp-manager/` subdirectory is the actual skill. The root-level files (README, LICENSE, CLAUDE.md) and `PRPs/` are for repository documentation and development, and should not be copied when installing the skill.
+**Important**: Only the `prp-manager/` subdirectory is the actual skill. The root-level files (README, LICENSE, CLAUDE.md) , `PRPs/` and `evals/` are for repository documentation and development, and should not be copied when installing the skill.
 
 `PRPs/templates/prp_base.md` is this repo's own template (the skill used on itself). The template shipped to users is `prp-manager/assets/templates/prp_base.md`.
 

@@ -1,0 +1,14 @@
+[
+  { "query": "Create a PRP for adding Google OAuth login", "should_trigger": true },
+  { "query": "before you write any code, plan out how we'd add CSV export to the reports page. i want a doc another agent can implement from", "should_trigger": true },
+  { "query": "I need an implementation blueprint for migrating our auth from sessions to JWT, with the files to touch and how to verify each step", "should_trigger": true },
+  { "query": "quiero planificar la feature de pagos con Stripe antes de implementarla, con contexto del codigo y pasos de validacion", "should_trigger": true },
+  { "query": "my teammate left this file PRPs/007--rate-limiting.md, can you implement what it says and run the checks", "should_trigger": true },
+  { "query": "set up the context engineering workflow for this project so we can plan features properly", "should_trigger": true },
+  { "query": "write a PRD for the mobile app redesign to share with stakeholders next week", "should_trigger": false },
+  { "query": "break the checkout epic into user stories for Linear", "should_trigger": false },
+  { "query": "add a null check to getUser in src/users.ts", "should_trigger": false },
+  { "query": "summarize the changes in PR #42 for the changelog", "should_trigger": false },
+  { "query": "write a prompt for our support chatbot so it answers in a friendly tone", "should_trigger": false },
+  { "query": "how does the auth middleware work in this codebase?", "should_trigger": false }
+]

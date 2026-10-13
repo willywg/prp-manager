@@ -1,11 +1,11 @@
 ---
 name: prp-manager
-description: Create and execute PRPs (Product Requirements Prompts) for feature implementation using Context Engineering principles. Use when planning new features, initializing PRP setup, executing existing PRPs, or when the user mentions "PRP", "feature planning", "implementation blueprint", or "context engineering". Helps achieve one-pass implementation success.
+description: Plan and implement features with PRPs (Product Requirements Prompts), implementation blueprints that give an AI coding agent the requirements, codebase context and validation steps to build a feature in one pass. Use this skill when the user wants to plan, spec or scope a feature before coding it, asks for an implementation plan or blueprint an agent can execute, wants to set up PRPs in a project, or asks to execute an existing PRP file, even if they do not say "PRP". Not for one-step code changes, PRDs for stakeholders, user stories or roadmaps.
 license: MIT
 compatibility: Works with any agent supporting the Agent Skills specification. Requires file system access.
 metadata:
   author: willywg
-  version: "1.1"
+  version: "1.2"
 ---
 # PRP Manager Skill
 
