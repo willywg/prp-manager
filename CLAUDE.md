@@ -15,6 +15,8 @@ prp-manager/                  # Repository root (development files)
 ├── README.md                 # Installation and usage documentation
 ├── LICENSE                   # MIT License
 ├── CLAUDE.md                 # This file
+├── .claude-plugin/
+│   └── marketplace.json      # Claude Code plugin marketplace; its one entry points at prp-manager/
 ├── PRPs/                     # PRPs for developing this repo (not part of the skill)
 │   └── templates/
 │       └── prp_base.md       # This repo's own PRP template
@@ -52,4 +54,5 @@ prp-manager/                  # Repository root (development files)
 - Stack-specific customization is in `references/customization.md`
 - Examples in `references/examples.md` should demonstrate realistic usage scenarios
 - Keep skill files (`prp-manager/`) separate from repo documentation (root files)
+- The plugin is defined only by `.claude-plugin/marketplace.json` (no `plugin.json`, no `version`, so installs track commits). Do not add a `.claude-plugin/` folder inside `prp-manager/`: it would ship to `npx skills` users. After editing the manifest run `claude plugin validate --strict .`
 - Follow the [Agent Skills specification](https://agentskills.io/specification)

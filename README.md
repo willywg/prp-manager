@@ -41,6 +41,27 @@ Install with the [skills CLI](https://www.skills.sh/willywg/prp-manager/prp-mana
 npx skills add https://github.com/willywg/prp-manager --skill prp-manager
 ```
 
+### Claude Code (Plugin)
+
+This repository is also a Claude Code plugin marketplace. In your shell:
+
+```bash
+claude plugin marketplace add willywg/prp-manager
+claude plugin install prp-manager@prp-manager
+```
+
+Or inside a session, in one step (Claude Code 2.1.275 or later):
+
+```
+/plugin install prp-manager --marketplace willywg/prp-manager
+```
+
+Update later with `claude plugin update prp-manager@prp-manager`.
+
+Notes:
+- As a plugin, the skill is invoked explicitly as `/prp-manager:prp-manager`. Automatic activation works the same as with any other install.
+- Pick one install method. If you also installed the skill with `npx skills add` or by copying it, Claude Code lists it twice.
+
 ### Claude Code (Manual)
 
 ```bash
@@ -185,6 +206,10 @@ prp-manager/                  # Repository root
 ├── README.md                 # This file
 ├── LICENSE                   # MIT License
 ├── CLAUDE.md                 # Claude Code guidance for this repo
+├── .claude-plugin/
+│   └── marketplace.json      # Claude Code plugin marketplace (points at the skill)
+├── PRPs/                     # PRPs used to develop this repo
+├── evals/                    # Trigger eval for the skill description
 └── prp-manager/              # The skill (copy this folder)
     ├── SKILL.md              # Main skill instructions
     ├── assets/
