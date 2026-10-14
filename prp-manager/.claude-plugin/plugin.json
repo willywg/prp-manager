@@ -3,9 +3,11 @@
   "displayName": "PRP Manager",
   "version": "1.3.0",
   "description": "Plan features as PRPs (Product Requirements Prompts): implementation blueprints with requirements, codebase context and validation steps, then execute them",
-  "author": { "name": "willywg", "url": "https://github.com/willywg" },
+  "author": { "name": "William Wong Garay", "url": "https://willywg.com" },
   "homepage": "https://github.com/willywg/prp-manager",
   "repository": "https://github.com/willywg/prp-manager",
+  "documentationUrl": "https://github.com/willywg/prp-manager#readme",
+  "supportUrl": "https://github.com/willywg/prp-manager/issues",
   "license": "MIT",
   "keywords": ["prp", "planning", "context-engineering", "spec", "agent-skill"],
   "skills": ["./"]
