@@ -153,3 +153,9 @@ The directory submission form validates a plugin folder, not a marketplace. Poin
 Fix: add `prp-manager/.claude-plugin/plugin.json` with `"skills": ["./"]` and the display fields, and reduce the marketplace entry to name, source, description and category. With `plugin.json` present the entry must not declare `skills`, or with `strict: false` the plugin fails to load with conflicting manifests. Checked in a scratch copy: both manifests validate (one warning: no `version`), `agentskills validate` passes, and a local install lists `Skills (1)  prp-manager`.
 
 Trade-off: `npx skills` users now also receive the small `.claude-plugin/plugin.json`. Other agents ignore it.
+
+### Directory lints (2026-10-14)
+
+After the plugin.json change the form passed with two warnings, both resolved:
+- No version: `plugin.json` now sets `"version": "1.3.0"`, matching `metadata.version` in SKILL.md. This replaces the earlier "no version, track commits" decision: users now update only when the version is bumped, so bump both on every skill change.
+- No icon: added `prp-manager/.claude-plugin/icon.png` (1024x1024, opaque, square corners so the directory can apply its own mask) and `"icon"` in plugin.json. The directory reads the icon only on the first save or submission.
