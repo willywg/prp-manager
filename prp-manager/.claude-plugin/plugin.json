@@ -1,5 +1,6 @@
 {
   "name": "prp-manager",
+  "displayName": "PRP Manager",
   "version": "1.3.0",
   "description": "Plan features as PRPs (Product Requirements Prompts): implementation blueprints with requirements, codebase context and validation steps, then execute them",
   "author": { "name": "willywg", "url": "https://github.com/willywg" },
