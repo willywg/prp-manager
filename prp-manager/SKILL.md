@@ -5,7 +5,7 @@ license: MIT
 compatibility: Works with any agent supporting the Agent Skills specification. Requires file system access.
 metadata:
   author: willywg
-  version: "1.2"
+  version: "1.3"
 ---
 # PRP Manager Skill
 
@@ -222,12 +222,12 @@ ls -1 PRPs/*.md 2>/dev/null | grep -E '^PRPs/[0-9]{3}--' | sort -r | head -5
 ✅ PRPs Initialized for [Project Name]
 
 Stack Detected:
-- Language: Python 3.11
-- Framework: FastAPI
-- Package Manager: uv
-- Linting: ruff
-- Type Checking: mypy
-- Testing: pytest
+- Language: [language and version]
+- Framework: [framework, if any]
+- Package Manager: [package manager]
+- Linting: [linter, or "none"]
+- Type Checking: [type checker, or "none"]
+- Testing: [test framework, or "none"]
 
 Created:
 - PRPs/templates/prp_base.md

@@ -147,12 +147,12 @@ Claude will:
 PRPs Initialized for MyProject
 
 Stack Detected:
-- Language: Python 3.11
-- Framework: FastAPI
-- Package Manager: uv
-- Linting: ruff
-- Type Checking: mypy
-- Testing: pytest
+- Language: TypeScript 5
+- Framework: Express
+- Package Manager: pnpm
+- Linting: Biome
+- Type Checking: tsc
+- Testing: Vitest
 
 Created:
 - PRPs/templates/prp_base.md

@@ -1,148 +1,96 @@
 # PRP Manager Examples
 
-## Example 1: Initialize PRPs (First Time Setup)
+Examples 1 to 3 follow one project through the three workflows: a TypeScript REST API using pnpm, Express, Biome and Vitest. The stack is only an illustration. Every command in a PRP comes from the project being worked on (see [customization.md](customization.md)); Examples 4 and 5 show the cases that differ.
 
-**User**: "Inicializa PRPs para este proyecto" o "Crea un PRP para X" (cuando no existe template)
+## Example 1: Initialize PRPs
 
-**Claude**:
-1. Detects no `PRPs/templates/prp_base.md` exists
-2. Analyzes project files (README, CLAUDE.md, package.json, etc.)
-3. Detects stack and conventions
-4. Generates customized template
+**User**: "Set up PRPs for this project"
 
-**Analysis Output**:
+**Agent**:
+1. Checks that `PRPs/templates/prp_base.md` does not exist
+2. Reads AGENTS.md, README.md, package.json, biome.json, tsconfig.json and the existing tests
+3. Copies the bundled template and replaces each command placeholder with the project's command
+
+**Analysis**:
 ```
-Analyzing project...
-
 Found:
-- AGENTS.md ✓ (universal agent guidance)
-- CLAUDE.md ✓ (Claude-specific rules)
-- README.md ✓
-- pyproject.toml ✓
-- ruff.toml ✓
-- tests/ directory ✓
+- AGENTS.md: "All handlers validate input with zod", "Put DB access in src/repositories/"
+- package.json scripts: lint, typecheck, test, dev
+- tests next to sources: src/**/*.test.ts
 
 Stack Detected:
-- Language: Python 3.11
-- Framework: FastAPI
-- Package Manager: uv
-- Linting: ruff (with custom rules)
-- Type Checking: mypy (strict mode)
-- Testing: pytest with pytest-asyncio
-
-Special Rules from CLAUDE.md:
-- Always use async/await for I/O operations
-- Follow existing patterns in src/services/
-- Run tests before committing
+- Language: TypeScript 5 (Node 20)
+- Framework: Express
+- Package Manager: pnpm
+- Linting: Biome
+- Type Checking: tsc
+- Testing: Vitest
 ```
 
-**Generated**: `PRPs/templates/prp_base.md`
+**Command placeholders resolved**:
 
-```markdown
-# PRP: [Feature Name]
+| Placeholder | Command in the generated template |
+|-------------|-----------------------------------|
+| `[lint command]` | `pnpm biome check --write src/` |
+| `[type check command]` | `pnpm tsc --noEmit` |
+| `[test command for the new tests]` | `pnpm vitest run src/path/to/feature.test.ts` |
+| `[full test command]` | `pnpm vitest run` |
+| `[start command]` | `pnpm dev` |
 
-> **Project:** MyFastAPI App
-> **Version:** 1.0
-> **Status:** Draft | Ready | In Progress | Completed
+**Generated** `PRPs/templates/prp_base.md` (excerpt: the sections that changed; the rest keeps the bundled structure):
 
----
-
-## Goal
-[What needs to be built]
-
-## Why
-- [Business value]
-
-## What
-[Technical requirements]
-
-### Success Criteria
-- [ ] [Measurable outcome]
-
----
-
-## All Needed Context
-
-### Documentation & References
-```yaml
-- url: [docs URL]
-  why: [reason]
-
-- file: [path]
-  why: [pattern to follow]
+````markdown
+### Known Gotchas & Library Quirks
+```text
+# From AGENTS.md:
+# - Validate every request body with zod before using it
+# - Database access only through src/repositories/
 ```
-
-### Current Codebase Structure
-```bash
-# Run: tree -L 2 src/
-```
-
-### Known Gotchas
-```python
-# From CLAUDE.md:
-# - Always use async/await for I/O operations
-# - Follow patterns in src/services/
-```
-
----
-
-## Implementation Blueprint
-
-### Tasks
-```yaml
-Task 1: [Description]
-  - MODIFY/CREATE: path/to/file.py
-  - PATTERN: Follow src/services/ structure
-```
-
----
 
 ## Validation Loop
 
 ### Level 1: Syntax & Style
 ```bash
-# Project-specific commands
-uv run ruff check src/ --fix
-uv run mypy src/ --strict
+# Run FIRST - fix errors before proceeding
+pnpm biome check --write src/
+pnpm tsc --noEmit
 ```
 
-### Level 2: Tests
+### Level 2: Unit Tests
 ```bash
-uv run pytest tests/ -v --asyncio-mode=auto
+# Run and iterate until passing
+pnpm vitest run src/path/to/feature.test.ts
 ```
 
-### Level 3: Integration
+### Level 3: Integration Test
 ```bash
-uv run python -m src.main --dev
-curl http://localhost:8000/health
+pnpm dev
+curl -i http://localhost:3000/[endpoint]
+# Expected: [observable result]
 ```
-
----
 
 ## Final Checklist
-- [ ] All tests pass: `uv run pytest tests/ -v`
-- [ ] No linting errors: `uv run ruff check src/`
-- [ ] No type errors: `uv run mypy src/ --strict`
-- [ ] Manual test successful
-- [ ] Follows patterns from src/services/
-```
+- [ ] All tests pass: `pnpm vitest run`
+- [ ] No linting errors: `pnpm biome check src/`
+- [ ] No type errors: `pnpm tsc --noEmit`
+````
+
+Content placeholders such as `[endpoint]` and `[observable result]` stay; they are filled in each PRP.
 
 **Summary**:
 ```
-✅ PRPs Initialized for MyFastAPI App
+✅ PRPs Initialized for orders-api
 
 Stack Detected:
-- Language: Python 3.11
-- Framework: FastAPI
-- Package Manager: uv
-- Linting: ruff
-- Type Checking: mypy (strict)
-- Testing: pytest + pytest-asyncio
+- Language: TypeScript 5
+- Framework: Express
+- Package Manager: pnpm
+- Linting: Biome
+- Type Checking: tsc
+- Testing: Vitest
 
 Special Rules Applied:
-- Async/await requirement noted in gotchas
-- Pattern references to src/services/
-- Strict mypy mode in validation
+- zod validation and repository rule added to Known Gotchas
 
 Created:
 - PRPs/templates/prp_base.md
@@ -152,205 +100,160 @@ Ready to generate PRPs!
 
 ---
 
-## Example 2: Generate PRP (After Initialize)
+## Example 2: Generate a PRP
 
-**User**: "Crea un PRP para agregar autenticación con OAuth2 usando Google"
+**User**: "Plan sign-in with Google before we build it"
 
-**Claude**:
-1. Checks `PRPs/templates/prp_base.md` exists ✓
-2. Researches codebase for auth patterns
-3. Checks external docs for Google OAuth2
-4. Creates PRP using project template
+**Agent**:
+1. Confirms `PRPs/templates/prp_base.md` exists
+2. Finds the current auth code (`src/auth/session.ts`, `src/routes/auth.ts`) and its tests
+3. Reads Google's OAuth 2.0 web server guide
+4. Lists existing PRPs to pick the next number, then writes the PRP from the project template
 
-**Output**: `PRPs/005--google-oauth2-auth.md`
+**Output**: `PRPs/005--google-sign-in.md` (excerpt)
 
-```markdown
-# PRP: Google OAuth2 Authentication
-
-> **Project:** MyFastAPI App
-> **Version:** 1.0
-> **Status:** Ready
-
----
+````markdown
+# PRP: Google Sign-In
 
 ## Goal
-Implement Google OAuth2 authentication allowing users to sign in with their Google accounts.
-
-## Why
-- Reduce friction for user signup/login
-- Leverage Google's security infrastructure
-- Users already trust Google authentication
-
-## What
-- "Sign in with Google" button on login page
-- OAuth2 flow with proper token handling
-- User profile sync from Google
+Users can sign in with a Google account. Existing email and password login keeps working.
 
 ### Success Criteria
-- [ ] Users can sign in with Google account
-- [ ] Profile picture and name synced from Google
-- [ ] Existing password login still works
-
----
+- [ ] GET /auth/google redirects to Google's consent screen
+- [ ] The callback creates or links the user and starts a session
+- [ ] A callback with an invalid `state` returns 400 and creates no session
 
 ## All Needed Context
 
 ### Documentation & References
 ```yaml
 - url: https://developers.google.com/identity/protocols/oauth2/web-server
-  why: Server-side OAuth2 flow
+  why: Authorization code flow, state parameter, token exchange
 
-- file: src/services/auth_service.py
-  why: Existing auth pattern to follow
+- file: src/auth/session.ts
+  why: How sessions are created today; reuse createSession()
 
-- doc: https://docs.authlib.org/en/latest/client/fastapi.html
-  critical: Use async client
+- file: src/routes/auth.test.ts
+  why: Test pattern for routes (supertest + in-memory repository)
 ```
 
-### Known Gotchas
-```python
-# From CLAUDE.md:
-# - Always use async/await for I/O operations
-# - Follow patterns in src/services/
-
-# OAuth specific:
-# - Google OAuth requires HTTPS in production
-# - Token refresh must happen before expiry
+### Known Gotchas & Library Quirks
+```text
+# - Validate the callback query with zod (AGENTS.md)
+# - Google requires the exact redirect URI registered in the console
+# - Store `state` in the session before redirecting; compare on callback
 ```
-
----
 
 ## Implementation Blueprint
 
-### Tasks
+### Tasks (in execution order)
 ```yaml
-Task 1: Add configuration
-  - MODIFY: src/config/settings.py
-  - ADD: GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET
+Task 1: Config
+  - MODIFY: src/config.ts
+  - ADD: GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI
 
-Task 2: Create OAuth service
-  - CREATE: src/services/oauth_google_service.py
-  - PATTERN: Follow src/services/auth_service.py
+Task 2: Google client
+  - CREATE: src/auth/google.ts
+  - PATTERN: follow src/auth/session.ts
 
-Task 3: Add endpoints
-  - MODIFY: src/api/routes/auth.py
-  - ADD: /auth/google/login, /auth/google/callback
+Task 3: Routes
+  - MODIFY: src/routes/auth.ts
+  - ADD: GET /auth/google, GET /auth/google/callback
 
-Task 4: Add tests
-  - CREATE: tests/test_oauth_google.py
+Task 4: Tests
+  - CREATE: src/routes/auth.google.test.ts
 ```
-
----
 
 ## Validation Loop
 
 ### Level 1: Syntax & Style
 ```bash
-uv run ruff check src/services/oauth_google_service.py --fix
-uv run mypy src/services/oauth_google_service.py --strict
+pnpm biome check --write src/
+pnpm tsc --noEmit
 ```
 
-### Level 2: Tests
+### Level 2: Unit Tests
 ```bash
-uv run pytest tests/test_oauth_google.py -v --asyncio-mode=auto
+pnpm vitest run src/routes/auth.google.test.ts
 ```
 
-### Level 3: Integration
+### Level 3: Integration Test
 ```bash
-uv run python -m src.main --dev
-open http://localhost:8000/auth/google/login
+pnpm dev
+curl -i http://localhost:3000/auth/google
+# Expected: 302 with Location starting https://accounts.google.com/
 ```
+````
+
+**Confidence**: 8/10. Main risk: the redirect URI must match the Google console exactly.
 
 ---
 
-## Final Checklist
-- [ ] All tests pass
-- [ ] No linting errors
-- [ ] No type errors (strict mode)
-- [ ] Manual OAuth flow works
-- [ ] Follows src/services/ patterns
-```
+## Example 3: Execute a PRP
 
-**Confidence Score: 8/10**
+**User**: "Execute PRPs/005--google-sign-in.md"
 
----
-
-## Example 3: Execute PRP
-
-**User**: "Ejecuta el PRP PRPs/005--google-oauth2-auth.md"
-
-**Claude**:
-1. Reads the PRP file
-2. Creates todo list from tasks
-3. Executes in order
-4. Runs validation at each step
-5. Reports final status
+**Agent**:
+1. Reads the whole PRP and the files it references
+2. Turns the tasks into a task list
+3. Implements them in order, running Level 1 after each file
+4. Runs Level 2 and Level 3, fixing failures and re-running until they pass
+5. Re-reads the success criteria and reports
 
 **Output**:
 ```
-✅ PRP Execution Complete: Google OAuth2 Authentication
+✅ PRP Execution Complete: Google Sign-In
 
-Tasks Completed:
-1. ✅ Added configuration to settings.py
-2. ✅ Created oauth_google_service.py
-3. ✅ Added OAuth endpoints
-4. ✅ Created test suite
-
-Validation Results:
-- ruff check: ✅ No errors
-- mypy --strict: ✅ No type errors
-- pytest: ✅ 8 tests passed
-- Manual test: ✅ OAuth flow working
-
-Final Status: SUCCESS
+Tasks: 4/4 completed
+Validation:
+- pnpm biome check: no errors
+- pnpm tsc --noEmit: no errors
+- pnpm vitest run: 41 passed (6 new)
+- curl /auth/google: 302 to accounts.google.com
+Status: SUCCESS
 ```
 
 ---
 
-## Example 4: Auto-Suggest Initialize
+## Example 4: No Template Yet
 
-**User**: "Crea un PRP para agregar websockets" (no template exists)
+**User**: "Write a PRP for adding websockets" (no `PRPs/templates/prp_base.md`)
 
-**Claude**:
+**Agent**:
 ```
-I notice this project doesn't have a PRP template yet.
-
-Would you like me to initialize PRPs first? This will:
-1. Analyze your project's stack and conventions
-2. Read AGENTS.md/CLAUDE.md/GEMINI.md for AI agent rules
-3. Create a customized template at PRPs/templates/prp_base.md
-
-This ensures all PRPs follow your project's patterns and validation commands.
-
-[Initialize PRPs] [Skip and use generic template]
+This project doesn't have a PRP template yet. Would you like me to initialize
+PRPs first? I'll read your stack and conventions and create a customized
+template at PRPs/templates/prp_base.md.
 ```
+
+If the user declines, the agent writes this PRP from the bundled template and still resolves its command placeholders from the project's files. The PRP never contains `[lint command]` or similar.
 
 ---
 
-## Example 5: Node.js Project Initialize
+## Example 5: A Tool the Project Lacks
 
-**User**: "Inicializa PRPs" (in a Next.js project)
+**User**: "Initialize PRPs" (in a Go service)
 
 **Detected**:
 ```
-Stack Detected:
-- Language: TypeScript
-- Framework: Next.js 14
-- Package Manager: pnpm
-- Linting: biome
-- Testing: vitest
+Language: Go 1.22
+Package Manager: go modules
+Linting: go vet (no golangci-lint config)
+Type Checking: none separate (the compiler checks types)
+Testing: go test
 ```
 
 **Generated validation commands**:
 ```bash
 # Level 1: Syntax & Style
-pnpm biome check src/
-pnpm tsc --noEmit
+gofmt -l .
+go vet ./...
 
-# Level 2: Tests
-pnpm vitest run
+# Level 2: Unit Tests
+go test ./internal/orders/...
 
-# Level 3: Integration
-pnpm dev
-curl http://localhost:3000/api/health
+# Level 3: Integration Test
+go run ./cmd/server
 ```
+
+`[type check command]` has no Go equivalent, so its lines are deleted from the template instead of being filled with an invented command.
