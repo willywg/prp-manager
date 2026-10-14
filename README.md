@@ -211,6 +211,8 @@ prp-manager/                  # Repository root
 ├── PRPs/                     # PRPs used to develop this repo
 ├── evals/                    # Trigger eval for the skill description
 └── prp-manager/              # The skill (copy this folder)
+    ├── .claude-plugin/
+    │   └── plugin.json       # Claude Code plugin manifest
     ├── SKILL.md              # Main skill instructions
     ├── assets/
     │   └── templates/

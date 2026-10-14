@@ -145,3 +145,11 @@ Results on 2026-10-13 (Claude Code 2.1.296):
 - Installed from this working copy, the session listed only `prp-manager`, not the namespaced skill. On this machine the user skills directory is a symlink to the same `prp-manager/` folder, so Claude Code loads that path once. This is specific to the development setup; the scratch copies, which live at a different path, were listed twice as the README warns.
 - Install from GitHub at `932f3c9`: `Skills (1)  prp-manager`, version `932f3c9ab0b6`. The plugin cache holds only `SKILL.md`, `assets/` and `references/` (no README, PRPs or evals). A headless session listed `prp-manager:prp-manager` and answered from the skill. The test install was removed afterwards.
 - Pending: submission to the official plugin directory (Task 5), done by the maintainer through the form.
+
+### Change after the first directory submission attempt (2026-10-14)
+
+The directory submission form validates a plugin folder, not a marketplace. Pointed at `prp-manager`, it blocked with "This folder is not a plugin ... add .claude-plugin/plugin.json with at least {"name": "…"}". The `strict: false` entry with no `plugin.json` works for installs but not for the directory.
+
+Fix: add `prp-manager/.claude-plugin/plugin.json` with `"skills": ["./"]` and the display fields, and reduce the marketplace entry to name, source, description and category. With `plugin.json` present the entry must not declare `skills`, or with `strict: false` the plugin fails to load with conflicting manifests. Checked in a scratch copy: both manifests validate (one warning: no `version`), `agentskills validate` passes, and a local install lists `Skills (1)  prp-manager`.
+
+Trade-off: `npx skills` users now also receive the small `.claude-plugin/plugin.json`. Other agents ignore it.

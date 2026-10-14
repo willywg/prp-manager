@@ -1,0 +1,10 @@
+{
+  "name": "prp-manager",
+  "description": "Plan features as PRPs (Product Requirements Prompts): implementation blueprints with requirements, codebase context and validation steps, then execute them",
+  "author": { "name": "willywg", "url": "https://github.com/willywg" },
+  "homepage": "https://github.com/willywg/prp-manager",
+  "repository": "https://github.com/willywg/prp-manager",
+  "license": "MIT",
+  "keywords": ["prp", "planning", "context-engineering", "spec", "agent-skill"],
+  "skills": ["./"]
+}

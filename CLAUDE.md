@@ -22,6 +22,8 @@ prp-manager/                  # Repository root (development files)
 │       └── prp_base.md       # This repo's own PRP template
 ├── evals/                    # Trigger eval for the skill description (not part of the skill)
 └── prp-manager/              # THE SKILL (this is what users install)
+    ├── .claude-plugin/
+    │   └── plugin.json       # Claude Code plugin manifest (ignored by other agents)
     ├── SKILL.md              # Main skill definition with frontmatter and workflows
     ├── assets/
     │   └── templates/
@@ -54,5 +56,5 @@ prp-manager/                  # Repository root (development files)
 - Stack-specific customization is in `references/customization.md`
 - Examples in `references/examples.md` should demonstrate realistic usage scenarios
 - Keep skill files (`prp-manager/`) separate from repo documentation (root files)
-- The plugin is defined only by `.claude-plugin/marketplace.json` (no `plugin.json`, no `version`, so installs track commits). Do not add a `.claude-plugin/` folder inside `prp-manager/`: it would ship to `npx skills` users. After editing the manifest run `claude plugin validate --strict .`
+- The Claude Code plugin is `prp-manager/.claude-plugin/plugin.json` (`"skills": ["./"]`, because SKILL.md sits at the plugin root). The root `.claude-plugin/marketplace.json` lists it. Keep display fields (description, keywords) in sync between the two. Neither sets `version`, so installs track commits. The directory submission form needs `plugin.json` in the folder it is pointed at (`prp-manager`). After editing either file run `claude plugin validate ./prp-manager` and `claude plugin validate .`
 - Follow the [Agent Skills specification](https://agentskills.io/specification)
