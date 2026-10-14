@@ -23,7 +23,7 @@ A user runs `claude plugin marketplace add willywg/prp-manager` and `claude plug
 - [x] Local install lists `Skills (1)  prp-manager`
 - [x] `prp-manager/` has no new files; `agentskills validate` still passes
 - [x] README documents the plugin install and the duplicate-listing caveat
-- [ ] Install from GitHub (`willywg/prp-manager`) works after push
+- [x] Install from GitHub (`willywg/prp-manager`) works after push
 - [x] Namespaced invocation `/prp-manager:prp-manager` checked in a session
 - [ ] Submitted to the official plugin directory
 
@@ -143,4 +143,5 @@ Results on 2026-10-13 (Claude Code 2.1.296):
 - Local install from the repo root: `Skills (1)  prp-manager`, version `06686f638f73` (the commit SHA, as expected with no `version` field), read in place from `prp-manager/`. The test marketplace was removed afterwards.
 - Namespaced invocation: in headless sessions, scratch copies of layouts A and B both listed `prp-manager:prp-manager` and answered `/prp-manager:prp-manager` from the loaded skill.
 - Installed from this working copy, the session listed only `prp-manager`, not the namespaced skill. On this machine the user skills directory is a symlink to the same `prp-manager/` folder, so Claude Code loads that path once. This is specific to the development setup; the scratch copies, which live at a different path, were listed twice as the README warns.
-- Not verified: install from GitHub, pending the push.
+- Install from GitHub at `932f3c9`: `Skills (1)  prp-manager`, version `932f3c9ab0b6`. The plugin cache holds only `SKILL.md`, `assets/` and `references/` (no README, PRPs or evals). A headless session listed `prp-manager:prp-manager` and answered from the skill. The test install was removed afterwards.
+- Pending: submission to the official plugin directory (Task 5), done by the maintainer through the form.
