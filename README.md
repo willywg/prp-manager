@@ -60,7 +60,7 @@ Update later with `claude plugin update prp-manager@prp-manager`.
 
 Notes:
 - As a plugin, the skill is invoked explicitly as `/prp-manager:prp-manager`. Automatic activation works the same as with any other install.
-- Pick one install method. If you also installed the skill with `npx skills add` or by copying it, Claude Code lists it twice.
+- Pick one install method. If you also have the skill in `~/.claude/skills/` (from `npx skills add` or a manual copy), Claude Code loads the plugin and skips that copy. Remove the copy to avoid confusion.
 
 ### Claude Code (Manual)
 
