@@ -8,7 +8,7 @@ Works with Claude Code, Cursor, Codex, Gemini CLI, GitHub Copilot, VS Code, Open
 npx skills add https://github.com/willywg/prp-manager --skill prp-manager
 ```
 
-Listed on [skills.sh](https://www.skills.sh/willywg/prp-manager/prp-manager).
+Listed on [skills.sh](https://www.skills.sh/willywg/prp-manager/prp-manager) and in the official Claude plugin directory (Claude Code, Cowork and the Claude apps).
 
 ## What is Context Engineering?
 
@@ -43,7 +43,15 @@ npx skills add https://github.com/willywg/prp-manager --skill prp-manager
 
 ### Claude Code (Plugin)
 
-This repository is also a Claude Code plugin marketplace. In your shell:
+PRP Manager is in the official Claude plugin directory. In your shell:
+
+```bash
+claude plugin install prp-manager@anthropic-plugin-directory
+```
+
+Or find it in the `/plugin` panel inside a session. Update later with `claude plugin update prp-manager@anthropic-plugin-directory`.
+
+The directory serves each version after Anthropic reviews it. To get new versions as soon as they are pushed, install from this repository, which is also a plugin marketplace:
 
 ```bash
 claude plugin marketplace add willywg/prp-manager
@@ -56,11 +64,9 @@ Or inside a session, in one step (Claude Code 2.1.275 or later):
 /plugin install prp-manager --marketplace willywg/prp-manager
 ```
 
-Update later with `claude plugin update prp-manager@prp-manager`.
-
 Notes:
 - As a plugin, the skill is invoked explicitly as `/prp-manager:prp-manager`. Automatic activation works the same as with any other install.
-- Pick one install method. If you also have the skill in `~/.claude/skills/` (from `npx skills add` or a manual copy), Claude Code loads the plugin and skips that copy. Remove the copy to avoid confusion.
+- Pick one install method: the directory or this repository's marketplace, not both. If you also have the skill in `~/.claude/skills/` (from `npx skills add` or a manual copy), Claude Code loads the plugin and skips that copy. Remove the copy to avoid confusion.
 
 ### Claude Code (Manual)
 

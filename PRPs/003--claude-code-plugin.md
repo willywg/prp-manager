@@ -2,7 +2,7 @@
 
 > **Version:** 1.0
 > **Created:** 2026-10-13
-> **Status:** In Progress
+> **Status:** Completed
 > **Issue:** https://github.com/willywg/prp-manager/issues/5
 
 ---
@@ -25,7 +25,7 @@ A user runs `claude plugin marketplace add willywg/prp-manager` and `claude plug
 - [x] README documents the plugin install and the duplicate-listing caveat
 - [x] Install from GitHub (`willywg/prp-manager`) works after push
 - [x] Namespaced invocation `/prp-manager:prp-manager` checked in a session
-- [ ] Submitted to the official plugin directory
+- [x] Submitted to the official plugin directory
 
 ---
 
@@ -159,3 +159,11 @@ Trade-off: `npx skills` users now also receive the small `.claude-plugin/plugin.
 After the plugin.json change the form passed with two warnings, both resolved:
 - No version: `plugin.json` now sets `"version": "1.3.0"`, matching `metadata.version` in SKILL.md. This replaces the earlier "no version, track commits" decision: users now update only when the version is bumped, so bump both on every skill change.
 - No icon: added `prp-manager/.claude-plugin/icon.png` (1024x1024, opaque, square corners so the directory can apply its own mask) and `"icon"` in plugin.json. The directory reads the icon only on the first save or submission.
+
+### Directory approval (2026-10-19)
+
+Submitted on 2026-10-14 with auto-publish on and the GitHub push webhook connected. v1.3.0 (`379c267`) was approved and published by the directory team, listed in Claude Code, Cowork and the Claude apps. The directory warnings were only the expected ones: `documentationUrl` and `supportUrl` as unrecognized fields ("No action needed") and the icon passing without a code check.
+
+- Install id: `prp-manager@anthropic-plugin-directory`. The directory pins the plugin as a `git-subdir` source (path `prp-manager`) at the approved SHA. Checked with `claude plugin install` and `claude plugin details` (`Skills (1)  prp-manager`); the test install was removed.
+- The panel says auto-publish does not apply for now: every version waits for an Anthropic reviewer. Group skill changes into fewer releases.
+- Follow-up distribution for other agents: #6 (Grok Build), #7 (Cursor), #8 (Codex).
