@@ -1,6 +1,17 @@
-# PRP Manager - Agent Skill
+<p align="center">
+  <img src="prp-manager/.claude-plugin/icon.png" alt="PRP Manager logo" width="128" height="128">
+</p>
 
-An [Agent Skill](https://agentskills.io) for creating and executing PRPs (Product Requirements Prompts) using Context Engineering principles for one-pass implementation success.
+<h1 align="center">PRP Manager</h1>
+
+<p align="center">
+  An <a href="https://agentskills.io">Agent Skill</a> for creating and executing PRPs (Product Requirements Prompts) using Context Engineering principles for one-pass implementation success.
+</p>
+
+<p align="center">
+  <a href="https://skills.sh/willywg/prp-manager"><img src="https://skills.sh/b/willywg/prp-manager" alt="skills.sh"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
+</p>
 
 Works with Claude Code, Cursor, Codex, Gemini CLI, GitHub Copilot, VS Code, OpenCode, and [other compatible agents](https://agentskills.io/clients).
 
