@@ -1,0 +1,16 @@
+{
+  "name": "prp-manager",
+  "owner": {
+    "name": "willywg"
+  },
+  "metadata": {
+    "description": "PRP Manager: plan and implement features with PRPs (Product Requirements Prompts)"
+  },
+  "plugins": [
+    {
+      "name": "prp-manager",
+      "source": "prp-manager",
+      "description": "Plan features as PRPs (Product Requirements Prompts): implementation blueprints with requirements, codebase context and validation steps, then execute them"
+    }
+  ]
+}

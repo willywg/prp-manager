@@ -79,6 +79,18 @@ Notes:
 - As a plugin, the skill is invoked explicitly as `/prp-manager:prp-manager`. Automatic activation works the same as with any other install.
 - Pick one install method: the directory or this repository's marketplace, not both. If you also have the skill in `~/.claude/skills/` (from `npx skills add` or a manual copy), Claude Code loads the plugin and skips that copy. Remove the copy to avoid confusion.
 
+### Cursor (Plugin)
+
+This repository is also a Cursor plugin marketplace (`.cursor-plugin/`). Until it is listed in the Cursor Marketplace, install it as a local plugin:
+
+```bash
+git clone https://github.com/willywg/prp-manager.git
+mkdir -p ~/.cursor/plugins/local
+cp -r prp-manager/prp-manager ~/.cursor/plugins/local/
+```
+
+Restart Cursor afterwards. Cursor also loads skills from `~/.cursor/skills/` and `~/.claude/skills/`, so if you installed the skill with `npx skills add` or into Claude Code's skills folder, keep only one copy.
+
 ### Claude Code (Manual)
 
 ```bash
@@ -225,12 +237,16 @@ prp-manager/                  # Repository root
 ├── CLAUDE.md                 # Claude Code guidance for this repo
 ├── .claude-plugin/
 │   └── marketplace.json      # Claude Code plugin marketplace (points at the skill)
+├── .cursor-plugin/
+│   └── marketplace.json      # Cursor plugin marketplace (points at the skill)
 ├── PRPs/                     # PRPs used to develop this repo
 ├── evals/                    # Trigger eval for the skill description
 └── prp-manager/              # The skill (copy this folder)
     ├── .claude-plugin/
     │   ├── plugin.json       # Claude Code plugin manifest
     │   └── icon.png          # Plugin directory listing icon
+    ├── .cursor-plugin/
+    │   └── plugin.json       # Cursor plugin manifest
     ├── SKILL.md              # Main skill instructions
     ├── assets/
     │   └── templates/
