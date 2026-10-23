@@ -13,7 +13,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
 </p>
 
-Works with Claude Code, Cursor, Codex, Grok Build, Gemini CLI, GitHub Copilot, VS Code, OpenCode, and [other compatible agents](https://agentskills.io/clients).
+Works with Claude Code, Cursor, Codex, Grok Build, Antigravity, GitHub Copilot, VS Code, OpenCode, and [other compatible agents](https://agentskills.io/clients).
 
 ```bash
 npx skills add https://github.com/willywg/prp-manager --skill prp-manager
