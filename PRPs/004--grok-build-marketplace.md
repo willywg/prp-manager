@@ -2,7 +2,7 @@
 
 > **Version:** 1.0
 > **Created:** 2026-10-23
-> **Status:** In Progress
+> **Status:** Completed (PR left open upstream)
 > **Issue:** https://github.com/willywg/prp-manager/issues/6
 
 ---
@@ -24,7 +24,7 @@ After the PR merges, Grok Build lists `prp-manager` in the xAI Official marketpl
 - [x] Catalog entry added; `validate-catalog.py` and `generate-plugin-index.py --check` pass in the fork
 - [x] The generated index lists the `prp-manager` skill for this entry
 - [x] PR opened with the template filled in: https://github.com/xai-org/plugin-marketplace/pull/1635
-- [ ] PR merged; README documents the Grok Build install
+- [x] README lists Grok Build as compatible (decided not to wait for the merge, see Notes)
 
 ---
 
@@ -170,3 +170,13 @@ may need maintainer approval).
 2026-10-23: CI on #1635 passed (3/3). The queue is long: 992 open PRs, and in the last
 30 days only 8 merged PRs were not daily pin bumps. Expect a slow or no review. Users can
 install directly in the meantime: `grok plugin install willywg/prp-manager#prp-manager`.
+
+### Closing decision (2026-10-23)
+
+Grok Build is still maintained after SpaceXAI's Cursor acquisition (Cursor's closing
+announcement lists Grok Build among the products the joint team will improve; no
+retirement announced), but its catalog review queue is not moving. Since Grok Build
+loads skills from `~/.agents/skills` (checked in the session test), `npx skills add`
+already covers it. README now lists Grok Build in the compatibility line; there is no
+separate install section. PR #1635 stays open upstream without follow-up; if it merges,
+add the marketplace install to the README then. Issue #6 closed.
